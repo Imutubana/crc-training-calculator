@@ -8,23 +8,15 @@ SSH:
 git clone git@github.com:Imutubana/crc-training-calculator.git
 ```
 
-## Setup Virtual Environment
+## Setup & Activate Virtual Environment
 Wndows:
 ```bash
 python -m venv .venv
-```
-Linux/MacOS:
-```bash
-python3 -m venv .venv
-```
-
-## Activate Virtual Environment
-Windows:
-```bash
 .\.venv\Scripts\activate
 ```
 Linux/MacOS:
 ```bash
+python -m venv .venv
 source .venv/bin/activate
 ```
 
@@ -34,11 +26,7 @@ pip install -r requirements.txt
 ```
 
 ## Run Application
-Windows:
+All Operating Systems:
 ```bash
-python -m main
-```
-Linux/MacOS:
-```bash
-python3 -m main
+python main.py
 ```
