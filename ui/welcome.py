@@ -23,7 +23,7 @@ class WelcomePage(ttk.Frame):
         header_frame.grid_rowconfigure(0, weight=1)
 
         header_label = tk.Label(header_frame,text="Welcome to Cardiff Racing Club Manager")
-        header_label.grid(row=0, column=0, padx=10, pady=10, sticky="ns")
+        header_label.grid(row=0, column=0, sticky="ns", padx=10, pady=10)
 
         # Company logo
         image_frame = ttk.Frame(self, style="Green.TFrame")   
@@ -44,7 +44,6 @@ class WelcomePage(ttk.Frame):
 
     def on_start(self):
         logging.info("Calculator page navigation selected")
-        #messagebox.showinfo("Coming Soon", "Calculator coming soon!")
         self.controller.show_frame("CalculatorPage")
 
     def show(self):
