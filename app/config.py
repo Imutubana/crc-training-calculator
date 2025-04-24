@@ -8,7 +8,7 @@ class Config():
     LOG_FILENAME = "app.log"
     LOG_PATH = os.path.join("data", LOG_FILENAME)
 
-    LOGO_FILENAME = "logo_black_on_white.png"
+    LOGO_FILENAME = "logo_revised_coloured.png"
     LOGO_PATH = os.path.join("assets", LOGO_FILENAME)
 
     APP_USER_ID = 1

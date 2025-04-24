@@ -1,52 +1,46 @@
 import logging
 import tkinter as tk
-from tkinter import ttk, messagebox
+from tkinter import ttk
 from ui.styles import init_styles
-from ui.widgets import populate_application_image
+from ui.welcome import WelcomePage
+from ui.calculator import CalculatorPage
 
-def run_app():
-    logging.info("Launching GUI...")
+class App(tk.Tk):
+    def __init__(self):
+        super().__init__()
+        logging.info("Launching GUI...")
 
-    root = tk.Tk()
-    root.title("Cardiff Racing Club - Training Manager")
-    root.geometry("500x500")
+        self.title("Cardiff Racing Club - Training Manager")
+        self.geometry("500x500")
 
-    init_styles()
+        self.grid_rowconfigure(0, weight=1)
+        self.grid_columnconfigure(0, weight=1)
 
-    # Configure grid layout
-    root.columnconfigure(0, weight=1)
-    root.rowconfigure(0, weight=0) # Welcome header
-    root.rowconfigure(1, weight=1) # Company Logo
-    root.rowconfigure(2, weight=0) # Navigation buttons
+        init_styles() # Initialise styles
 
-    # Welcome header
-    header_frame = ttk.Frame(root, style="Blue.TFrame")   
-    header_frame.grid(row=0, column=0, sticky='new', padx=10, pady=10)
-    header_frame.grid_columnconfigure(0, weight=1)
-    header_frame.grid_rowconfigure(0, weight=0)
+        # Main container to hold all pages
+        container = ttk.Frame(self, style="Blue.TFrame")
+        container.grid(row=0, column=0, sticky='nsew', padx=10, pady=10)
+        container.grid_rowconfigure(0, weight=1)
+        container.grid_columnconfigure(0, weight=1)
 
-    header_label = tk.Label(header_frame,text="Welcome to Cardiff Racing Club Manager")
-    header_label.grid(row=0, column=0, padx=10, pady=10, sticky="new")
+        # Page storage
+        self.frames = {}
 
-    # Company logo
-    image_frame = ttk.Frame(root, style="Green.TFrame")   
-    image_frame.grid(row=1, column=0, sticky='nsew', padx=10, pady=10)
-    image_frame.grid_columnconfigure(0, weight=1)
-    image_frame.grid_rowconfigure(0, weight=1)
+        # Initialise pages
+        welcome_page = WelcomePage(parent=container, controller=self)
+        welcome_page.grid(row=0, column=0, sticky="nsew", padx=10, pady=10) 
+        self.frames["WelcomePage"] = welcome_page
 
-    populate_application_image(image_frame)
+        calculator_page = CalculatorPage(parent=container, controller=self)
+        calculator_page.grid(row=0, column=0, sticky="nsew", padx=10, pady=10) 
+        self.frames["CalculatorPage"] = calculator_page
 
-    # Navigation buttons
-    def on_start():
-        logging.info("Start button clicked")
-        messagebox.showinfo("Coming Soon", "Driver input coming next!")
+        # Show application welcome page
+        self.show_frame("WelcomePage")
 
-    button_frame = ttk.Frame(root, style="Red.TFrame")   
-    button_frame.grid(row=2, column=0, sticky='sew', padx=10, pady=10)
-    button_frame.grid_columnconfigure(0, weight=1)
-    button_frame.grid_rowconfigure(0, weight=0)
-
-    start_button = tk.Button(button_frame, text="Start", command=on_start)
-    start_button.grid(row=0, column=0, sticky='sew', pady=10, padx=10)
-
-    root.mainloop()
+    def show_frame(self, name):
+        logging.info(f"Loading {name} page...")
+        frame = self.frames.get(name)
+        if frame:
+            frame.show()

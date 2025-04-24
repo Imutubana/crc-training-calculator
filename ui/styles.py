@@ -6,7 +6,7 @@ def init_styles():
     style = ttk.Style()
 
     # Use built-in default theme
-    style.theme_use("clam") # clam/alt
+    style.theme_use("default")
 
     if Config.DEV_UI:
         # Dev container styles
@@ -15,6 +15,6 @@ def init_styles():
         style.configure("Blue.TFrame", background="#66B2FF")
 
         # Dev label styles
-        style.configure("Dev.TLabel", background="#FFFFCC", foreground="#333", font=("Helvetica", 10, "italic"))
+        style.configure("Yellow.TLabel", background="#FFFFCC", foreground="#333")
 
     logging.info("UI styles initialized")

@@ -1,0 +1,39 @@
+Input Data:  
+- Driver name  
+- Training plan 
+- Current car horsepower (HP)  
+- Racing category  
+- Number of races entered this month  
+- Option to add the number of hours private coaching.   
+
+Program Output:  
+- The driver’s name  
+- An itemised list of all costs for the month  
+- The total cost of training and races for the month  
+- How their current car horsepower compares to their racing category.  
+
+Price List:
+Training Plan – Prices (£GBP)  
+Beginner (2 sessions per week) – £30.00 per week
+Intermediate (3 sessions per week) – £40.00 per week
+Elite (5 sessions per week) – £50.00 per week
+Private tuition – £15.00 per hour
+Race entry fee - £35.00 per entry
+
+Weight Categories:
+Categories - Horsepower Range (HP)  
+Entry-Level - Under 100  
+Sport - 100–199  
+Performance - 200–299  
+High-Performance - 300–399  
+Supercar - Over 400  
+
+Validation Limits:
+- Drivers can receive a maximum of five hours’ private coaching a week. 
+- Only Intermediate and Elite drivers can enter races 
+- Races are held on the second Sunday of each month. 
+
+Notes:
+- All prices and costs should be displayed as currency to two decimal places.  
+- The program deals with user error by displaying suitable messages to the user and then prompting them for another go.  
+- Cardiff Racing Club assumes that a month consists of four weeks. 
