@@ -32,4 +32,4 @@ python main.py
 ```
 
 ## Company Logo
-![Company Logo](https://http://github.com/Imutubana/crc-training-calculator/blob/main/assets/logo_revised_coloured.png?raw=true)
+![Company Logo](https://github.com/Imutubana/crc-training-calculator/blob/main/assets/logo_revised_coloured.png?raw=true)
