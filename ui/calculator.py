@@ -2,7 +2,8 @@ import logging
 from tkinter import ttk, messagebox
 from app.training_plans import TRAINING_PLAN_NAMES
 from app.calculations.category_resolver import get_category_from_hp
-from app.calculations.cost_calculator import calculate_total_cost
+from app.calculations.category_resolver import get_category_feedback
+from app.calculations.cost_calculator import itemised_cost_list
 from app.validation.input_validator import validate_driver_input
 from app.models.calculator_input import DriverInput
 
@@ -64,41 +65,41 @@ class CalculatorPage(ttk.Frame):
     def user_input_form(self, container):
         # Driver name entry fields
         driver_name_label = ttk.Label(container, text="Driver Name:")
-        driver_name_label.grid(row=0, column=0, sticky="w", padx=(10,5), pady=(10,5))
+        driver_name_label.grid(row=0, column=0, sticky="w", padx=(10,5), pady=(10,2))
         self.driver_name_entry = ttk.Entry(container)
-        self.driver_name_entry.grid(row=0, column=1, sticky="ew", padx=(5,10), pady=(10,5))
+        self.driver_name_entry.grid(row=0, column=1, sticky="ew", padx=(5,10), pady=(10,2))
 
         # Training plan entry fields
         training_plan_label = ttk.Label(container, text="Training Plan:")
-        training_plan_label.grid(row=1, column=0, sticky="w", padx=(10,5), pady=(5,5))
+        training_plan_label.grid(row=1, column=0, sticky="w", padx=(10,5), pady=(2,2))
         self.training_plan_dropdown = ttk.Combobox(container, values=TRAINING_PLAN_NAMES)
-        self.training_plan_dropdown.grid(row=1, column=1, sticky="ew", padx=(5,10), pady=(5,5))
+        self.training_plan_dropdown.grid(row=1, column=1, sticky="ew", padx=(5,10), pady=(2,2))
         self.training_plan_dropdown.set(TRAINING_PLAN_NAMES[0])  # Default value
 
         # Horsepower entry fields
         horsepower_label = ttk.Label(container, text="Horsepower (HP):")
-        horsepower_label.grid(row=2, column=0, sticky="w", padx=(10,5), pady=(5,5))
+        horsepower_label.grid(row=2, column=0, sticky="w", padx=(10,5), pady=(2,2))
         self.horsepower_entry = ttk.Entry(container)
-        self.horsepower_entry.grid(row=2, column=1, sticky="ew", padx=(5,10), pady=(5,5))
+        self.horsepower_entry.grid(row=2, column=1, sticky="ew", padx=(5,10), pady=(2,2))
         self.horsepower_entry.bind("<FocusOut>", self.update_category_field)
 
         # Add autopopulated category field 
         category_label = ttk.Label(container, text="Category:")
-        category_label.grid(row=3, column=0, sticky="w", padx=(10,5), pady=(5,5))
+        category_label.grid(row=3, column=0, sticky="w", padx=(10,5), pady=(2,2))
         self.category_entry = ttk.Entry(container, state="readonly")
-        self.category_entry.grid(row=3, column=1, sticky="ew", padx=(5,10), pady=(5,5))
+        self.category_entry.grid(row=3, column=1, sticky="ew", padx=(5,10), pady=(2,2))
 
         # Coaching hours entry fields
         coaching_hours_label = ttk.Label(container, text="Coaching Hours (0–5):")
-        coaching_hours_label.grid(row=4, column=0, sticky="w", padx=(10,5), pady=(5,5))
+        coaching_hours_label.grid(row=4, column=0, sticky="w", padx=(10,5), pady=(2,2))
         self.coaching_hours_entry_spinbox = ttk.Spinbox(container, from_=0, to=5, width=5)
-        self.coaching_hours_entry_spinbox.grid(row=4, column=1, sticky="w", padx=(5,10), pady=(5,5))
+        self.coaching_hours_entry_spinbox.grid(row=4, column=1, sticky="w", padx=(5,10), pady=(2,2))
 
         # Races entered entry fields
         races_entered_label = ttk.Label(container, text="Races Entered:")
         races_entered_label.grid(row=5, column=0, sticky="w", padx=(10,5), pady=(5,10))
         self.races_entered_entry_spinbox = ttk.Spinbox(container, from_=0, to=10, width=5)
-        self.races_entered_entry_spinbox.grid(row=5, column=1, sticky="w", padx=(5,10), pady=(5,10))
+        self.races_entered_entry_spinbox.grid(row=5, column=1, sticky="w", padx=(5,10), pady=(2,10))
 
     def update_category_field(self, event):
         try: # Identifying category based on HP
@@ -146,14 +147,16 @@ class CalculatorPage(ttk.Frame):
 
         # Perform calculations
         logging.info(f"Calculating costs for: {driver_data}")
-        total_cost = calculate_total_cost(input_driver_data=driver_data)
+        itemised_list = itemised_cost_list(input_driver_data=driver_data)
+        category_feedback = get_category_feedback(horsepower=driver_data.horsepower)
 
         # Provide results to user
         self.output_label.config(
             text=(
                 f"Driver: {driver_data.name}\n"
                 f"Category: {driver_data.category}\n"
-                f"Total Monthly Cost: £{total_cost:.2f}"
+                f"{category_feedback}\n"
+                f"{itemised_list}"
             )
         )
 
