@@ -14,7 +14,7 @@ class Config():
     APP_USER_ID = 1
     APP_USER_NAME = "TestUsername"
     
-    DEV_UI = True
+    DEV_UI = False
 
 def setup_logging():
     logging.basicConfig(

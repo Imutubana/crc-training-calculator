@@ -1,7 +1,7 @@
 import logging
 import tkinter as tk
 from tkinter import ttk, messagebox
-from ui.widgets import populate_application_image
+from ui.components.widgets import populate_application_image
 
 class WelcomePage(ttk.Frame):
     def __init__(self, parent, controller):
@@ -22,7 +22,7 @@ class WelcomePage(ttk.Frame):
         header_frame.grid_columnconfigure(0, weight=1)
         header_frame.grid_rowconfigure(0, weight=1)
 
-        header_label = tk.Label(header_frame,text="Welcome to Cardiff Racing Club Manager")
+        header_label = ttk.Label(header_frame,text="Welcome to Cardiff Racing Club Manager", style="PageTitle.TLabel")
         header_label.grid(row=0, column=0, sticky="ns", padx=10, pady=10)
 
         # Company logo

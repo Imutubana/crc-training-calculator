@@ -1,9 +1,9 @@
 import logging
 import tkinter as tk
 from tkinter import ttk
-from ui.styles import init_styles
-from ui.welcome import WelcomePage
-from ui.calculator import CalculatorPage
+from ui.styles.styles import init_styles
+from ui.pages.welcome_page import WelcomePage
+from ui.pages.calculator_page import CalculatorPage
 
 class App(tk.Tk):
     def __init__(self):

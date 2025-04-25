@@ -1,6 +1,6 @@
 import logging
 from app.config import setup_logging
-from app.database import create_driver_table
+from app.database.database import create_driver_table
 from ui.main_window import App
 
 def main():

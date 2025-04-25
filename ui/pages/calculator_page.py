@@ -1,6 +1,6 @@
 import logging
 from tkinter import ttk, messagebox
-from app.training_plans import TRAINING_PLAN_NAMES
+from app.constants.training_plans import TRAINING_PLAN_NAMES
 from app.calculations.category_resolver import get_category_from_hp
 from app.calculations.category_resolver import get_category_feedback
 from app.calculations.cost_calculator import itemised_cost_list
@@ -27,7 +27,7 @@ class CalculatorPage(ttk.Frame):
         header_frame.columnconfigure(0, weight=1)
         header_frame.rowconfigure(0, weight=1)
 
-        page_title_lable = ttk.Label(header_frame, text="Driver Cost Calculator")
+        page_title_lable = ttk.Label(header_frame, text="Driver Cost Calculator", style="PageTitle.TLabel")
         page_title_lable.grid(row=0, column=0, sticky="ns", padx=10, pady=10)
 
         # User input form

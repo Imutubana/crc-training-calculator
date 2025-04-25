@@ -1,4 +1,4 @@
-from app.training_plans import TRAINING_PLANS, PRIVATE_TUITION_PRICE, RACE_ENTRY_FEE
+from app.constants.training_plans import TRAINING_PLANS, PRIVATE_TUITION_PRICE, RACE_ENTRY_FEE
 from app.models.calculator_input import DriverInput
 from app.models.itemised_cost import ItemisedCost
 

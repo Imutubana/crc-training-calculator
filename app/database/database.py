@@ -1,6 +1,6 @@
 import sqlite3
 import logging
-from app import queries
+from app.database import queries
 from app import Config
 
 def get_connection():

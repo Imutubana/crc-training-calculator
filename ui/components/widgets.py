@@ -1,7 +1,6 @@
 from tkinter import ttk
 from PIL import Image, ImageTk
 from app import Config
-from ui.styles import init_styles
 
 def populate_application_image(container):
     # Load the image

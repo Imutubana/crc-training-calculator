@@ -1,4 +1,4 @@
-from app.weight_categories import WEIGHT_CATEGORIES
+from app.constants.weight_categories import WEIGHT_CATEGORIES
 
 def get_category_from_hp(horsepower: int) -> str:
     for category in WEIGHT_CATEGORIES:

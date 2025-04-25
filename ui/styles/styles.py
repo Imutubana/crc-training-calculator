@@ -17,4 +17,11 @@ def init_styles():
         # Dev label styles
         style.configure("Yellow.TLabel", background="#FFFFCC", foreground="#333")
 
+    style.configure(
+        "PageTitle.TLabel",
+        font=("Helvetica", 15, "bold"),
+        foreground="#222",
+        padding=10
+    )
+
     logging.info("UI styles initialized")
