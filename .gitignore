@@ -2,6 +2,9 @@
 __pycache__/
 *__pycache__/
 
+# Ignore pytest directories
+*.pytest_cache
+
 # Ignore virtual environment directories
 .venv/
 .env/
