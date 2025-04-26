@@ -4,13 +4,14 @@ from tkinter import ttk
 from ui.styles.styles import init_styles
 from ui.pages.welcome_page import WelcomePage
 from ui.pages.calculator_page import CalculatorPage
+from app import Config
 
 class App(tk.Tk):
     def __init__(self):
         super().__init__()
         logging.info("Launching GUI...")
 
-        self.title("Cardiff Racing Club - Training Manager")
+        self.title(f"Cardiff Racing Club - Training Manager (v{Config.VERSION})")
         self.geometry("500x500")
 
         self.grid_rowconfigure(0, weight=1)

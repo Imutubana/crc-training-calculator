@@ -2,6 +2,8 @@ import os
 import logging
 
 class Config():
+    VERSION = "1.0.0"
+
     DB_FILENAME = "cardiff_racing_club.db"
     DB_PATH = os.path.join("data", DB_FILENAME)
 
