@@ -2,8 +2,8 @@ name: CRC Training Calculator - CD Pipeline
 
 on:
   push:
-    branches:
-      - main
+    #branches:
+    #  - main
     tags:
       - 'v*.*.*'
 
