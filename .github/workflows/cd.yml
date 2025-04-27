@@ -38,15 +38,21 @@ jobs:
       run: |
         pyinstaller specs/CRCTrainingCalculator.spec
 
-    - name: Create Zip Archive
+
+    - name: Create Zip Archive (Linux/macOS)
+      if: runner.os != 'Windows'
       run: |
         cd dist
-        if [ "${{ runner.os }}" == "Windows" ]; then
-          zip CRCTrainingCalculator-v${{ github.run_number }}-${{ matrix.artifact_suffix }}.zip CRCTrainingCalculator.exe
-        else
-          zip CRCTrainingCalculator-v${{ github.run_number }}-${{ matrix.artifact_suffix }}.zip CRCTrainingCalculator
-        fi
+        zip CRCTrainingCalculator-v${{ github.run_number }}-${{ matrix.artifact_suffix }}.zip CRCTrainingCalculator
+        cd .. 
+
+    - name: Create Zip Archive (Windows)
+      if: runner.os == 'Windows'
+      run: |
+        cd dist
+        Compress-Archive -Path CRCTrainingCalculator.exe -DestinationPath CRCTrainingCalculator-v${{ github.run_number }}-${{ matrix.artifact_suffix }}.zip
         cd ..
+      shell: pwsh
 
     - name: Upload Release Asset
       uses: softprops/action-gh-release@v2
