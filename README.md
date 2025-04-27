@@ -78,6 +78,6 @@ pytest tests/
 ---
 
 ## 🏁 Company Logo
-![Company Logo](./assets/logo_revised_coloured.png)
+![Company Logo](./assets/cardiff_racing_club_logo.png)
 
 ---
