@@ -1,15 +1,23 @@
 name: CRC Training Calculator - CD Pipeline
 
 on:
+  pull_request: 
+    branches: [ main ]
   push:
-    #branches:
-    #  - main
-    tags:
-      - 'v*.*.*'
+    tags: [ 'v*.*.*' ]
 
 jobs:
   build-and-release:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            artifact_suffix: linux
+          - os: windows-latest
+            artifact_suffix: windows
+          - os: macos-latest
+            artifact_suffix: macos
 
     steps:
     - name: Checkout Code
@@ -33,13 +41,17 @@ jobs:
     - name: Create Zip Archive
       run: |
         cd dist
-        zip CRCTrainingCalculator-v${{ github.run_number }}.zip CRCTrainingCalculator
+        if [ "${{ runner.os }}" == "Windows" ]; then
+          zip CRCTrainingCalculator-v${{ github.run_number }}-${{ matrix.artifact_suffix }}.zip CRCTrainingCalculator.exe
+        else
+          zip CRCTrainingCalculator-v${{ github.run_number }}-${{ matrix.artifact_suffix }}.zip CRCTrainingCalculator
+        fi
         cd ..
 
     - name: Upload Release Asset
       uses: softprops/action-gh-release@v2
       with:
-        files: dist/CRCTrainingCalculator-v${{ github.run_number }}.zip
+        files: dist/CRCTrainingCalculator-v${{ github.run_number }}-${{ matrix.artifact_suffix }}.zip
         token: ${{ secrets.GH_PAT }}
       #env:
       #  GITHUB_TOKEN: {{ secrets.GITHUB_TOKEN }}

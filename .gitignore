@@ -17,3 +17,5 @@ __pycache__/
 # Ignore build assets
 build/
 dist/
+
+scrap/
