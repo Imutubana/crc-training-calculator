@@ -40,5 +40,6 @@ jobs:
       uses: softprops/action-gh-release@v2
       with:
         files: dist/CRCTrainingCalculator-v${{ github.run_number }}.zip
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.GH_PAT }}
+      #env:
+      #  GITHUB_TOKEN: {{ secrets.GITHUB_TOKEN }}
