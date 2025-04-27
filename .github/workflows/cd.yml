@@ -5,7 +5,7 @@ on:
     branches:
       - main
     tags:
-      - 'v*.*.*'  # Optional: triggers for version tags like v1.0.1
+      - 'v*.*.*'
 
 jobs:
   build-and-release:
