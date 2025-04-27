@@ -2,9 +2,10 @@ import sqlite3
 import logging
 from app.database import queries
 from app import Config
+from app.config import resource_path
 
 def get_connection():
-    return sqlite3.connect(Config.DB_PATH)
+    return sqlite3.connect(resource_path(Config.DB_PATH))
 
 def create_driver_table():
     try:

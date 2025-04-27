@@ -3,6 +3,8 @@
 ![Python](https://img.shields.io/badge/Python-3.12%2B-blue)
 ![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20Linux%20%7C%20macOS-darkgreen)
 ![License](https://img.shields.io/badge/License-MIT-red)
+[![Latest Release](https://img.shields.io/github/v/release/Imutubana/crc-training-calculator?label=Release&style=flat)](https://github.com/Imutubana/crc-training-calculator/releases/latest)
+
 
 ---
 
