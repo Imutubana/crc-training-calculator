@@ -12,7 +12,7 @@ class App(tk.Tk):
         logging.info("Launching GUI...")
 
         self.title(f"Cardiff Racing Club - Training Manager (v{Config.VERSION})")
-        self.geometry("500x500")
+        self.geometry("500x530")
 
         self.grid_rowconfigure(0, weight=1)
         self.grid_columnconfigure(0, weight=1)

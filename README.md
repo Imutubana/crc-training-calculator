@@ -19,7 +19,7 @@
 | Layer               | Technology        |
 |---------------------|-------------------|
 | Frontend (GUI)      | Tkinter           |
-| Backend Language    | Python 3.12+      |
+| Backend Language    | Python 3.10+      |
 | Database            | SQLite3 (Local)   |
 | Testing Framework   | Pytest            |
 | CI/CD Pipeline      | GitHub Actions    |

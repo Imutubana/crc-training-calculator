@@ -20,7 +20,8 @@ def itemised_cost_list(input_driver_data:DriverInput) -> ItemisedCost:
     return ItemisedCost(
         training_cost=training_costs,
         coaching_cost=coaching_costs,
-        racing_cost=racing_costs
+        racing_cost=racing_costs,
+        plan_name=input_driver_data.training_plan
     )
 
 def get_list_category_names():

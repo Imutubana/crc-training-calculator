@@ -50,7 +50,7 @@ class CalculatorPage(ttk.Frame):
         output_form_frame.columnconfigure(0, weight=1)
         output_form_frame.rowconfigure(0, weight=1)
 
-        self.output_label = ttk.Label(output_form_frame, text="Test Output")
+        self.output_label = ttk.Label(output_form_frame)
         self.output_label.grid(row=0, column=0, sticky="ew", padx=10, pady=10)
 
         # Command buttons
