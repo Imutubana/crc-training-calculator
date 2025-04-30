@@ -56,11 +56,15 @@ class CalculatorPage(ttk.Frame):
         # Command buttons
         command_buttons_frame = ttk.Frame(self, style="Red.TFrame")
         command_buttons_frame.grid(row=3, column=0, sticky="sew", padx=10, pady=(5,10))
-        command_buttons_frame.columnconfigure(0, weight=1)
+        command_buttons_frame.columnconfigure(0, weight=1) # Clear form button
+        command_buttons_frame.columnconfigure(1, weight=1) # Submit form button
         command_buttons_frame.rowconfigure(0, weight=0)
 
+        clear_form_btn = ttk.Button(command_buttons_frame, text="Clear Form", command=self.clear_form)
+        clear_form_btn.grid(row=0, column=0, sticky="nse", padx=(10,5), pady=10)
+
         calculate_btn = ttk.Button(command_buttons_frame, text="Calculate", command=self.calculate_cost)
-        calculate_btn.grid(row=0, column=0, sticky="ns", padx=10, pady=10)
+        calculate_btn.grid(row=0, column=1, sticky="nsw", padx=(5,10), pady=10)
 
     def user_input_form(self, container):
         # Driver name entry fields
@@ -116,6 +120,20 @@ class CalculatorPage(ttk.Frame):
         self.category_entry.config(state="readonly")
 
         # messagebox.showinfo("Incorrect horsepower", "Please enter a whole number greater than zero.")
+
+    def clear_form(self):
+        logging.info("Clear input form selected")
+        self.driver_name_entry.delete(0, "end")
+        self.training_plan_dropdown.set(TRAINING_PLAN_NAMES[0])
+        self.horsepower_entry.delete(0, "end")
+        self.coaching_hours_entry_spinbox.delete(0, "end")
+        self.races_entered_entry_spinbox.delete(0, "end")
+
+        self.category_entry.config(state="!readonly")
+        self.category_entry.delete(0, "end")
+        self.category_entry.config(state="readonly")
+
+        self.output_label.config(text='')
 
     def calculate_cost(self):
         logging.info("Calculation input form submitted")
